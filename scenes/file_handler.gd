@@ -33,7 +33,7 @@ func _build_file(file, vboxref, main):
 		$pane000/TextureRect.texture = GlobalVariables.texture_icon
 	elif ext == "bxm":
 		$pane000/TextureRect.texture = GlobalVariables.bxm_icon
-	elif ext == "dat" or ext == "dtt" or ext == "env" or ext == "eff" or ext == "eft":
+	elif ext == "dat" or ext == "dtt" or ext == "env" or ext == "eff" or ext == "evn":
 		$pane000/TextureRect.texture = GlobalVariables.dat_icon
 		IsContainer = true
 	elif ext == "bnk":
