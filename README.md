@@ -1,21 +1,5 @@
-uuid - static uuid generator for Godot Engine
+SUNDOWNER MODDING UTILITY
 ===========================================
 
-The *uuid* class is a GDScript 'static' class that provides a unique identifier generation for [Godot Engine](https://godotengine.org).
-
-Usage
------
-
-Copy the `uuid.gd` file in your project folder, and preload it using a constant.
-
-```gdscript
-const uuid_util = preload('res://uuid.gd')
-
-func _init():
-  print(uuid_util.v4())
-```
-
-Licensing
----------
-
-MIT (See license file for more informations)
+Sundowner Modding Utility is a Metal Gear Rising DAT Editor which excels with it's graphically advanced and easy to use interface
+Sundowner Modding Utility is contained IN MEMORY, meaning no need to extract DAT files to your disk
