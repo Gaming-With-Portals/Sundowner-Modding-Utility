@@ -8,5 +8,5 @@ Sundowner Modding Utility is contained IN MEMORY, meaning no need to extract DAT
 
 (Spindowner taken from Project: Wildfire, made by Gaming with Portals)
 
-# Mod Showcase! (Made with Wildfire)
+# Mod Showcase! (Made with SMU)
 - [Project Wildfire](https://www.nexusmods.com/metalgearrisingrevengeance/mods/706)
