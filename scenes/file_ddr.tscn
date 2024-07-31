@@ -1,0 +1,273 @@
+[gd_scene load_steps=10 format=3 uid="uid://c88raiqmx8855"]
+
+[ext_resource type="Script" path="res://scenes/file_ddr.gd" id="1_u6hlq"]
+[ext_resource type="FontFile" uid="uid://dne2fc1los10l" path="res://assets/conthrax-sb.otf" id="2_0lpfm"]
+[ext_resource type="Shader" path="res://scenes/invert.gdshader" id="3_c71l2"]
+[ext_resource type="Texture2D" uid="uid://bhkvair1q4i1a" path="res://assets/icons/animation.png" id="4_1ap3j"]
+[ext_resource type="Texture2D" uid="uid://56l18ho2vckr" path="res://scenes/arrow.png" id="5_i0bps"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssj6t"]
+shader = ExtResource("3_c71l2")
+
+[sub_resource type="Animation" id="Animation_xdfaa"]
+resource_name = "anim"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_mewl1"]
+resource_name = "anim_2"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3obi1"]
+_data = {
+"anim": SubResource("Animation_xdfaa"),
+"anim_2": SubResource("Animation_mewl1")
+}
+
+[node name="File" type="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u6hlq")
+
+[node name="pane000" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 464.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="pane000"]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Label" type="Label" parent="pane000"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 4.0
+offset_right = 461.0
+offset_bottom = 37.0
+theme_override_colors/font_outline_color = Color(0.360784, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_0lpfm")
+theme_override_font_sizes/font_size = 26
+text = "aaaaaaaaaaaaaaaaaaaaa"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="pane000"]
+visible = false
+texture_filter = 2
+material = SubResource("ShaderMaterial_ssj6t")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("4_1ap3j")
+
+[node name="pane001" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 941.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="pane001"]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.560784)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pane001"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 946.0
+offset_bottom = 37.0
+
+[node name="back" type="Button" parent="pane001/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_0lpfm")
+theme_override_font_sizes/font_size = 20
+text = "< BACK"
+
+[node name="2" type="ColorRect" parent="pane001/HBoxContainer"]
+custom_minimum_size = Vector2(4.845, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="replace" type="Button" parent="pane001/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_0lpfm")
+theme_override_font_sizes/font_size = 20
+text = "REPLACE"
+
+[node name="5" type="ColorRect" parent="pane001/HBoxContainer"]
+custom_minimum_size = Vector2(4.845, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="remove" type="Button" parent="pane001/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_0lpfm")
+theme_override_font_sizes/font_size = 20
+text = "REMOVE"
+
+[node name="3" type="ColorRect" parent="pane001/HBoxContainer"]
+custom_minimum_size = Vector2(4.845, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="rename" type="Button" parent="pane001/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_0lpfm")
+theme_override_font_sizes/font_size = 20
+text = "RENAME"
+
+[node name="6" type="ColorRect" parent="pane001/HBoxContainer"]
+custom_minimum_size = Vector2(4.845, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="pane_rename" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 941.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="pane_rename"]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.560784)
+
+[node name="TextureRect" type="TextureRect" parent="pane_rename"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_ssj6t")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("4_1ap3j")
+
+[node name="LineEdit" type="LineEdit" parent="pane_rename"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 1.0
+offset_right = 936.0
+offset_bottom = 42.0
+theme_override_colors/font_outline_color = Color(0.360784, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_0lpfm")
+theme_override_font_sizes/font_size = 26
+placeholder_text = "rename"
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 464.0
+offset_bottom = 3.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 464.0
+offset_bottom = 40.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 37.0
+offset_bottom = -31.0
+rotation = 1.5708
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 0.00168018
+offset_top = -461.0
+offset_right = 34.0016
+offset_bottom = -458.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ap" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3obi1")
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.359069, 0.359069, 0.359069, 1)
+layout_mode = 0
+offset_left = 447.0
+offset_right = 574.0
+offset_bottom = 40.0
+texture = ExtResource("5_i0bps")
+expand_mode = 1
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="pane000" to="." method="_on_pane_000_mouse_entered"]
+[connection signal="mouse_exited" from="pane000" to="." method="_on_pane_000_mouse_exited"]
+[connection signal="pressed" from="pane001/HBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="pane001/HBoxContainer/replace" to="." method="_on_replace_pressed"]
+[connection signal="pressed" from="pane001/HBoxContainer/remove" to="." method="_on_remove_pressed"]
+[connection signal="button_down" from="pane001/HBoxContainer/rename" to="." method="_on_rename_button_down"]
+[connection signal="text_submitted" from="pane_rename/LineEdit" to="." method="_on_line_edit_text_submitted"]

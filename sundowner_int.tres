@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dtwbi08gknryl"]
+
+[ext_resource type="FontFile" uid="uid://dne2fc1los10l" path="res://assets/conthrax-sb.otf" id="1_u1hqp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1omp"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.658824, 0, 0, 1)
+
+[resource]
+PopupMenu/colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+PopupMenu/colors/font_separator_outline_color = Color(0.658824, 0, 0, 0.294118)
+PopupMenu/constants/outline_size = 5
+PopupMenu/constants/separator_outline_size = 12
+PopupMenu/font_sizes/font_separator_size = 16
+PopupMenu/font_sizes/font_size = 16
+PopupMenu/fonts/font = ExtResource("1_u1hqp")
+PopupMenu/fonts/font_separator = ExtResource("1_u1hqp")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_u1omp")
+TabBar/colors/drop_mark_color = Color(1, 1, 1, 1)
+TabBar/colors/font_selected_color = Color(0.94902, 0, 0, 1)
+TabBar/font_sizes/font_size = 16
+TabBar/fonts/font = ExtResource("1_u1hqp")

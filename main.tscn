@@ -1,0 +1,1300 @@
+[gd_scene load_steps=34 format=3 uid="uid://bb73150e82j6k"]
+
+[ext_resource type="Texture2D" uid="uid://vjc2qgk4dohc" path="res://assets/des_logo_new.webp.png" id="1_tofyc"]
+[ext_resource type="Script" path="res://main.gd" id="1_wiy3b"]
+[ext_resource type="Script" path="res://bg.gd" id="2_cdolp"]
+[ext_resource type="FontFile" uid="uid://cel4nq4fx2mhx" path="res://techno_hideo.ttf" id="3_ixrvi"]
+[ext_resource type="Texture2D" uid="uid://lf0b7abc7vpn" path="res://assets/newerbg.png" id="4_8yy6m"]
+[ext_resource type="Script" path="res://menu_directory_explorer.gd" id="7_2stes"]
+[ext_resource type="Texture2D" uid="uid://c3rb4dqtotrvj" path="res://assets/ember.png" id="7_agilh"]
+[ext_resource type="PackedScene" uid="uid://biitjvltosd8d" path="res://scenes/file.tscn" id="7_htavl"]
+[ext_resource type="Texture2D" uid="uid://158yspskhs7d" path="res://assets/logo/gwp_01.png" id="7_nysxr"]
+[ext_resource type="Texture2D" uid="uid://c11uedxjua20i" path="res://assets/logo/gwp_00.png" id="7_ordtl"]
+[ext_resource type="Texture2D" uid="uid://driheykcos62h" path="res://assets/logo/gwp_02.png" id="8_yi8jq"]
+[ext_resource type="Texture2D" uid="uid://18bw4ai5k5by" path="res://assets/logo/gwp_03.png" id="9_txdqs"]
+[ext_resource type="FontFile" uid="uid://dne2fc1los10l" path="res://assets/conthrax-sb.otf" id="10_1e8ur"]
+[ext_resource type="Texture2D" uid="uid://t8hspjqeu1np" path="res://assets/logo/gwp_05.png" id="10_lyhji"]
+[ext_resource type="Texture2D" uid="uid://qx821oai3q4y" path="res://assets/logo/gwp_04.png" id="11_ee8lq"]
+[ext_resource type="Shader" path="res://scenes/invert.gdshader" id="11_id62b"]
+[ext_resource type="Texture2D" uid="uid://d1xhkt66svac3" path="res://assets/icons/loading_circle.png" id="11_ovwu4"]
+[ext_resource type="Script" path="res://recents.gd" id="14_r3h8v"]
+[ext_resource type="Script" path="res://dynamicdatrepacker.gd" id="19_flhud"]
+[ext_resource type="Theme" uid="uid://dtwbi08gknryl" path="res://sundowner_int.tres" id="20_n7yrs"]
+[ext_resource type="Texture2D" uid="uid://cxhuov3mx3ax1" path="res://assets/icons/dat.png" id="20_srsxp"]
+[ext_resource type="AudioStream" uid="uid://cnai8hx6n1aqp" path="res://scenes/ring.ogg" id="21_33dvy"]
+[ext_resource type="Script" path="res://menu_directory_explorer_ddr.gd" id="21_sg80e"]
+[ext_resource type="PackedScene" uid="uid://dkqx0xl83loxy" path="res://about_window.tscn" id="24_jqchd"]
+
+[sub_resource type="GDScript" id="GDScript_kbrcy"]
+resource_name = "animation"
+script/source = "extends Control
+
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	$\"00\".position.x = sin(Time.get_ticks_msec() / 500.0) * 2.0
+	
+	$\"01\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.2
+	$\"02\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.2
+	$\"03\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.2
+	
+	$\"04\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.5
+	$\"05\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5xtek"]
+shader = ExtResource("11_id62b")
+
+[sub_resource type="Animation" id="Animation_7s5i1"]
+resource_name = "directory_back"
+length = 0.25
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o30y6"]
+_data = {
+"directory_back": SubResource("Animation_7s5i1")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjkxu"]
+shader = ExtResource("11_id62b")
+
+[sub_resource type="Animation" id="Animation_e1smc"]
+resource_name = "dir_change"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_pane/menu_directory_explorer/FileList:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_37yg2"]
+resource_name = "menu_change"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("right_pane:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fieg5"]
+resource_name = "notification"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("notif:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-330, 601), Vector2(22, 601), Vector2(22, 601), Vector2(-330, 601)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("notif/as")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kl616"]
+_data = {
+"dir_change": SubResource("Animation_e1smc"),
+"menu_change": SubResource("Animation_37yg2"),
+"notification": SubResource("Animation_fieg5")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wiy3b")
+
+[node name="bg" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+script = ExtResource("2_cdolp")
+
+[node name="TextureRect2" type="TextureRect" parent="bg"]
+self_modulate = Color(1, 1, 1, 0.14902)
+layout_mode = 0
+offset_left = 381.0
+offset_top = 236.0
+offset_right = 741.0
+offset_bottom = 536.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_tofyc")
+
+[node name="bg_001" type="TextureRect" parent="bg"]
+self_modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1152.0
+offset_top = 742.0
+offset_right = 2021.0
+offset_bottom = 1053.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_8yy6m")
+expand_mode = 1
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="bg"]
+position = Vector2(-417, 325)
+scale = Vector2(0.799542, 0.349498)
+amount = 80
+lifetime = 4.0
+texture = ExtResource("7_agilh")
+spread = 35.65
+gravity = Vector2(0, 0)
+initial_velocity_min = 561.45
+initial_velocity_max = 561.45
+angle_min = 193.8
+angle_max = 193.8
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+color = Color(1, 0, 0, 1)
+
+[node name="Logo" type="Control" parent="bg"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = SubResource("GDScript_kbrcy")
+
+[node name="00" type="TextureRect" parent="bg/Logo"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_ordtl")
+
+[node name="01" type="TextureRect" parent="bg/Logo"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("7_nysxr")
+
+[node name="02" type="TextureRect" parent="bg/Logo"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_yi8jq")
+
+[node name="03" type="TextureRect" parent="bg/Logo"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("9_txdqs")
+
+[node name="04" type="TextureRect" parent="bg/Logo"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("10_lyhji")
+
+[node name="05" type="TextureRect" parent="bg/Logo"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("11_ee8lq")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 59.0
+offset_right = 200.0
+offset_bottom = 120.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_ixrvi")
+theme_override_font_sizes/font_size = 25
+text = "SUNDOWNER 
+MODDING
+UTILITY"
+
+[node name="right_pane" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 202.0
+offset_top = 39.0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="menu_000" type="Control" parent="right_pane"]
+visible = false
+anchors_preset = 0
+offset_right = 951.0
+offset_bottom = 650.0
+
+[node name="Label" type="RichTextLabel" parent="right_pane/menu_000"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -474.5
+offset_top = -279.0
+offset_right = 466.5
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_1e8ur")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]DRAG ANY
+[color=#FF0000]METAL GEAR RISING DATA FILE[/color] 
+INTO THIS PANE TO BEGIN OR
+CHOOSE A RECENT FILE FROM
+BELOW[/center]"
+autowrap_mode = 0
+
+[node name="divider5" type="ColorRect" parent="right_pane/menu_000"]
+layout_mode = 0
+offset_top = 334.0
+offset_right = 944.0
+offset_bottom = 340.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="right_pane/menu_000"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 340.0
+offset_right = 944.0
+offset_bottom = 606.0
+
+[node name="recents" type="VBoxContainer" parent="right_pane/menu_000/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("14_r3h8v")
+
+[node name="Button" type="Button" parent="right_pane/menu_000"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 299.0
+offset_right = 943.0
+offset_bottom = 330.0
+theme_override_fonts/font = ExtResource("10_1e8ur")
+text = "Click here to see a list of supported formats"
+flat = true
+
+[node name="drag_n_drop_2" type="Control" parent="right_pane"]
+visible = false
+anchors_preset = 0
+offset_right = 951.0
+offset_bottom = 650.0
+
+[node name="Label2" type="Label" parent="right_pane/drag_n_drop_2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -470.5
+offset_top = -310.0
+offset_right = 307.5
+offset_bottom = -272.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_ixrvi")
+theme_override_font_sizes/font_size = 60
+text = "REPLACE OR ADD FILES"
+
+[node name="Label" type="RichTextLabel" parent="right_pane/drag_n_drop_2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -451.5
+offset_top = -66.0
+offset_right = 451.5
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_1e8ur")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]DRAG AND DROP YOUR FILE INTO
+THIS PANE[/center]"
+autowrap_mode = 0
+
+[node name="menu_settings" type="Control" parent="right_pane"]
+visible = false
+anchors_preset = 0
+offset_right = 951.0
+offset_bottom = 650.0
+
+[node name="Label2" type="Label" parent="right_pane/menu_settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468.5
+offset_top = -312.0
+offset_right = 291.5
+offset_bottom = -274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_ixrvi")
+theme_override_font_sizes/font_size = 60
+text = "CONFIGURATION"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="right_pane/menu_settings"]
+layout_mode = 0
+offset_top = 57.0
+offset_right = 940.0
+offset_bottom = 606.0
+
+[node name="forceeasy" type="CheckButton" parent="right_pane/menu_settings/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "FORCE EASY TO READ FONT "
+icon_alignment = 1
+expand_icon = true
+
+[node name="simplecolors" type="CheckButton" parent="right_pane/menu_settings/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "SIMPLE COLORS INTERFACE"
+icon_alignment = 1
+expand_icon = true
+
+[node name="disablevfx" type="CheckButton" parent="right_pane/menu_settings/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "DISABLE VFX"
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="right_pane/menu_settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="right_pane/menu_settings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = " How many recent files to display:"
+
+[node name="VSeparator" type="VSeparator" parent="right_pane/menu_settings/VBoxContainer/HBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(11.97, 0)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="right_pane/menu_settings/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+caret_blink = true
+
+[node name="ddrrefresh" type="HBoxContainer" parent="right_pane/menu_settings/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="right_pane/menu_settings/VBoxContainer/ddrrefresh"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = " Dynamic Dat Repacker Refresh Speed (Seconds)"
+
+[node name="VSeparator" type="VSeparator" parent="right_pane/menu_settings/VBoxContainer/ddrrefresh"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(11.97, 0)
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="right_pane/menu_settings/VBoxContainer/ddrrefresh"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="mgrdir" type="HBoxContainer" parent="right_pane/menu_settings/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="right_pane/menu_settings/VBoxContainer/mgrdir"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "MGR DIRECTORY:"
+
+[node name="VSeparator" type="VSeparator" parent="right_pane/menu_settings/VBoxContainer/mgrdir"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(11.97, 0)
+layout_mode = 2
+
+[node name="SelectDirMGR" type="Button" parent="right_pane/menu_settings/VBoxContainer/mgrdir"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "SELECT DIR"
+
+[node name="FileDialog" type="FileDialog" parent="right_pane/menu_settings/VBoxContainer/mgrdir"]
+title = "Open a File"
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.exe")
+use_native_dialog = true
+
+[node name="save" type="Button" parent="right_pane/menu_settings"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 562.0
+offset_right = 147.0
+offset_bottom = 595.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "SAVE SETTINGS"
+alignment = 0
+
+[node name="reload" type="Button" parent="right_pane/menu_settings"]
+layout_mode = 0
+offset_left = 237.0
+offset_top = 562.0
+offset_right = 353.0
+offset_bottom = 595.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "RELOAD"
+alignment = 0
+
+[node name="menu_directory_explorer" type="Control" parent="right_pane"]
+visible = false
+anchors_preset = 0
+offset_right = 951.0
+offset_bottom = 650.0
+script = ExtResource("7_2stes")
+
+[node name="Label" type="Label" parent="right_pane/menu_directory_explorer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468.5
+offset_top = -312.0
+offset_right = 291.5
+offset_bottom = -274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_ixrvi")
+theme_override_font_sizes/font_size = 60
+text = "Data Explorer"
+
+[node name="File_Copy" parent="right_pane/menu_directory_explorer" instance=ExtResource("7_htavl")]
+custom_minimum_size = Vector2(0, 41)
+layout_mode = 2
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 666.0
+offset_top = -147.0
+offset_right = 1611.0
+offset_bottom = -107.0
+
+[node name="FileList" type="ScrollContainer" parent="right_pane/menu_directory_explorer"]
+layout_mode = 0
+offset_top = 114.0
+offset_right = 945.0
+offset_bottom = 577.0
+horizontal_scroll_mode = 0
+
+[node name="search" type="LineEdit" parent="right_pane/menu_directory_explorer"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 73.0
+offset_right = 935.0
+offset_bottom = 106.0
+theme_override_colors/font_outline_color = Color(0.605674, 1.66051e-06, 3.85046e-07, 0.439216)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+placeholder_text = "Search"
+
+[node name="TextureRect" type="TextureRect" parent="right_pane/menu_directory_explorer"]
+material = SubResource("ShaderMaterial_5xtek")
+layout_mode = 0
+offset_left = 900.0
+offset_top = 8.0
+offset_right = 940.0
+offset_bottom = 48.0
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("11_ovwu4")
+
+[node name="ColorRect" type="ColorRect" parent="right_pane/menu_directory_explorer"]
+layout_mode = 0
+offset_top = 574.0
+offset_right = 947.0
+offset_bottom = 607.0
+color = Color(0, 0, 0, 0.572549)
+
+[node name="Label2" type="Label" parent="right_pane/menu_directory_explorer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -947.0
+offset_top = 254.0
+offset_right = -97.0
+offset_bottom = 279.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "FILE COUNT: "
+
+[node name="directory" type="Label" parent="right_pane/menu_directory_explorer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -926.0
+offset_top = -277.0
+offset_right = -530.0
+offset_bottom = -252.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "EM0310.DAT\\EM0310.EFF"
+
+[node name="directory_back" type="Button" parent="right_pane/menu_directory_explorer"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 44.0
+offset_right = 23.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "<"
+flat = true
+
+[node name="gui_storage_000" type="Control" parent="right_pane/menu_directory_explorer"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/path = ""
+
+[node name="container" type="Control" parent="right_pane/menu_directory_explorer"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="basic_storage" type="Control" parent="right_pane/menu_directory_explorer/container"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/path = ""
+
+[node name="dir_anim_player" type="AnimationPlayer" parent="right_pane/menu_directory_explorer"]
+libraries = {
+"": SubResource("AnimationLibrary_o30y6")
+}
+
+[node name="Label3" type="RichTextLabel" parent="right_pane/menu_directory_explorer"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.516
+offset_left = -475.5
+offset_top = -53.0
+offset_right = 467.5
+offset_bottom = -12.744
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_1e8ur")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]LOADING GUI[/center]"
+autowrap_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="right_pane/menu_directory_explorer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="search_timer" type="Timer" parent="right_pane/menu_directory_explorer"]
+one_shot = true
+
+[node name="menu_texture_explorer" type="Control" parent="right_pane"]
+visible = false
+anchors_preset = 0
+offset_right = 951.0
+offset_bottom = 650.0
+
+[node name="Label" type="Label" parent="right_pane/menu_texture_explorer"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468.5
+offset_top = -312.0
+offset_right = 291.5
+offset_bottom = -274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_ixrvi")
+theme_override_font_sizes/font_size = 60
+text = "Texture Explorer"
+
+[node name="FileList" type="ScrollContainer" parent="right_pane/menu_texture_explorer"]
+layout_mode = 0
+offset_top = 114.0
+offset_right = 945.0
+offset_bottom = 577.0
+horizontal_scroll_mode = 0
+
+[node name="container" type="VBoxContainer" parent="right_pane/menu_texture_explorer/FileList"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="right_pane/menu_texture_explorer"]
+material = SubResource("ShaderMaterial_5xtek")
+layout_mode = 0
+offset_left = 900.0
+offset_top = 8.0
+offset_right = 940.0
+offset_bottom = 48.0
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("11_ovwu4")
+
+[node name="ColorRect" type="ColorRect" parent="right_pane/menu_texture_explorer"]
+layout_mode = 0
+offset_top = 574.0
+offset_right = 947.0
+offset_bottom = 607.0
+color = Color(0, 0, 0, 0.572549)
+
+[node name="Label2" type="Label" parent="right_pane/menu_texture_explorer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -947.0
+offset_top = 254.0
+offset_right = -97.0
+offset_bottom = 279.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "FILE COUNT: "
+
+[node name="gui_storage_000" type="Control" parent="right_pane/menu_texture_explorer"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/path = ""
+
+[node name="container" type="Control" parent="right_pane/menu_texture_explorer"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="basic_storage" type="Control" parent="right_pane/menu_texture_explorer/container"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/path = ""
+
+[node name="Label3" type="RichTextLabel" parent="right_pane/menu_texture_explorer"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.516
+offset_left = -475.5
+offset_top = -53.0
+offset_right = 467.5
+offset_bottom = -12.744
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("10_1e8ur")
+theme_override_font_sizes/normal_font_size = 40
+bbcode_enabled = true
+text = "[center]LOADING GUI[/center]"
+autowrap_mode = 0
+
+[node name="menu_ddr" type="Control" parent="right_pane"]
+anchors_preset = 0
+offset_right = 951.0
+offset_bottom = 650.0
+script = ExtResource("19_flhud")
+
+[node name="Label" type="Label" parent="right_pane/menu_ddr"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -468.5
+offset_top = -312.0
+offset_right = 466.5
+offset_bottom = -274.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("3_ixrvi")
+theme_override_font_sizes/font_size = 60
+text = "DYNAMIC DAT REPaCKER"
+horizontal_alignment = 1
+
+[node name="directory" type="Label" parent="right_pane/menu_ddr"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -949.0
+offset_top = -277.0
+offset_right = -480.0
+offset_bottom = -252.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "DIRECTORY CONTENTS"
+horizontal_alignment = 1
+
+[node name="directory2" type="Label" parent="right_pane/menu_ddr"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -473.0
+offset_top = -277.0
+offset_right = -7.0
+offset_bottom = -252.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "LOADED DAT CONTENTS"
+horizontal_alignment = 1
+
+[node name="divider4" type="ColorRect" parent="right_pane/menu_ddr"]
+layout_mode = 0
+offset_top = 74.0
+offset_right = 944.0
+offset_bottom = 80.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider6" type="ColorRect" parent="right_pane/menu_ddr"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.5
+offset_top = -245.0
+offset_right = 525.5
+offset_bottom = -239.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+color = Color(0.658824, 0, 0, 1)
+
+[node name="TextureButton" type="TextureButton" parent="right_pane/menu_ddr"]
+material = SubResource("ShaderMaterial_mjkxu")
+layout_mode = 0
+offset_left = 440.0
+offset_top = 49.0
+offset_right = 471.0
+offset_bottom = 76.0
+tooltip_text = "Open directory..."
+texture_normal = ExtResource("20_srsxp")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="dir_explorer_1" type="ScrollContainer" parent="right_pane/menu_ddr"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 81.0
+offset_right = 466.0
+offset_bottom = 605.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="right_pane/menu_ddr/dir_explorer_1"]
+layout_mode = 2
+script = ExtResource("21_sg80e")
+
+[node name="dir_explorer_2" type="ScrollContainer" parent="right_pane/menu_ddr"]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 81.0
+offset_right = 941.0
+offset_bottom = 606.0
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="right_pane/menu_ddr/dir_explorer_2"]
+layout_mode = 2
+script = ExtResource("21_sg80e")
+
+[node name="Timer" type="Timer" parent="right_pane/menu_ddr"]
+wait_time = 5.0
+
+[node name="load" type="Label" parent="right_pane/menu_ddr"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -713.0
+offset_top = -162.0
+offset_right = -247.0
+offset_bottom = -62.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "TO USE THE DYNAMIC DAT LOADER
+FIRST SELECT A DIRECTORY
+BY CLICKING THE FOLDER ICON"
+horizontal_alignment = 1
+
+[node name="file" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 175.0
+offset_right = 197.0
+offset_bottom = 191.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 12
+horizontal_alignment = 1
+clip_text = true
+
+[node name="filepreview" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 155.0
+offset_right = 199.0
+offset_bottom = 180.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "FILE PREVIEW:"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="datainfo" type="Label" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 383.0
+offset_right = 199.0
+offset_bottom = 408.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "ORIG. INFO:"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="datinfo" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 405.0
+offset_right = 197.0
+offset_bottom = 643.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("10_1e8ur")
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+
+[node name="file_info" type="Button" parent="."]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 349.0
+offset_right = 196.0
+offset_bottom = 373.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 12
+text = "FILE EXTENSION HELP"
+
+[node name="divider5" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 39.0
+offset_right = 1149.0
+offset_bottom = 45.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider6" type="ColorRect" parent="divider5"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 605.0
+offset_right = 1157.0
+offset_bottom = 611.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider4" type="ColorRect" parent="divider5"]
+layout_mode = 0
+offset_left = 1155.0
+offset_top = -42.0
+offset_right = 2307.0
+offset_bottom = -36.0
+rotation = 1.5708
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider3" type="ColorRect" parent="divider5"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = -37.0
+offset_right = 1169.0
+offset_bottom = -31.0
+rotation = 1.5708
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider" type="ColorRect" parent="divider5"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 6.0
+offset_right = 205.0
+offset_bottom = 618.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider2" type="ColorRect" parent="divider5"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = 104.0
+offset_right = 205.0
+offset_bottom = 110.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider7" type="ColorRect" parent="divider5"]
+layout_mode = 0
+offset_left = -49.0
+offset_top = 334.0
+offset_right = 205.0
+offset_bottom = 340.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider5" type="ColorRect" parent="divider5"]
+layout_mode = 0
+offset_top = -44.0
+offset_right = 1152.0
+offset_bottom = -38.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="toolbar" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1151.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="toolbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
+[node name="Label" type="Label" parent="toolbar/ColorRect"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -177.0
+offset_top = -11.5
+offset_right = -7.0
+offset_bottom = 13.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/shadow_outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "V2.0"
+horizontal_alignment = 2
+
+[node name="file" type="MenuButton" parent="toolbar"]
+layout_mode = 0
+offset_right = 99.0
+offset_bottom = 40.0
+theme = ExtResource("20_n7yrs")
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "FILE"
+item_count = 8
+popup/item_0/text = "DATA OPTIONS"
+popup/item_0/id = 4
+popup/item_0/disabled = true
+popup/item_0/separator = true
+popup/item_1/text = "Save (CTRL+S)"
+popup/item_1/id = 0
+popup/item_2/text = "Save As (ALT+S)"
+popup/item_2/id = 1
+popup/item_3/text = "Open"
+popup/item_3/id = 2
+popup/item_4/text = "De-load File"
+popup/item_4/id = 7
+popup/item_5/text = "APPLICATION"
+popup/item_5/id = 5
+popup/item_5/separator = true
+popup/item_6/text = "Launch MGR (F6)"
+popup/item_6/id = 6
+popup/item_7/text = "Quit (ALT+F4)"
+popup/item_7/id = 3
+
+[node name="view" type="MenuButton" parent="toolbar"]
+layout_mode = 0
+offset_left = 99.0
+offset_right = 197.0
+offset_bottom = 40.0
+theme = ExtResource("20_n7yrs")
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "VIEW"
+item_count = 3
+popup/item_0/text = "MAIN WINDOW"
+popup/item_0/id = 0
+popup/item_0/separator = true
+popup/item_1/text = "Configuration (F2)"
+popup/item_1/id = 1
+popup/item_2/text = "Open File (F3)"
+popup/item_2/id = 2
+
+[node name="divider5" type="ColorRect" parent="toolbar"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = -1.0
+offset_right = 99.0
+offset_bottom = 42.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="divider6" type="ColorRect" parent="toolbar"]
+layout_mode = 0
+offset_left = 197.0
+offset_top = -1.0
+offset_right = 202.0
+offset_bottom = 42.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="help" type="MenuButton" parent="toolbar"]
+layout_mode = 0
+offset_left = 202.0
+offset_right = 300.0
+offset_bottom = 40.0
+theme = ExtResource("20_n7yrs")
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "HELP"
+item_count = 2
+popup/item_0/text = "About SMU (F1)"
+popup/item_0/id = 0
+popup/item_1/text = "Open Docs"
+popup/item_1/id = 1
+
+[node name="divider7" type="ColorRect" parent="toolbar"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = -1.0
+offset_right = 301.0
+offset_bottom = 42.0
+color = Color(0.658824, 0, 0, 1)
+
+[node name="global_anim_player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kl616")
+}
+
+[node name="AboutWindow" parent="." instance=ExtResource("24_jqchd")]
+visible = false
+
+[node name="notif" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -330.0
+offset_top = 601.0
+offset_right = -12.9994
+offset_bottom = 625.0
+
+[node name="ColorRect" type="ColorRect" parent="notif"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.029
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.193
+offset_top = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.619608)
+
+[node name="notiftext" type="Label" parent="notif"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -6.0
+offset_right = 321.0
+offset_bottom = 24.0
+theme_override_fonts/font = ExtResource("10_1e8ur")
+theme_override_font_sizes/font_size = 20
+text = "SAVED SUCCESSFULLY"
+vertical_alignment = 1
+
+[node name="as" type="AudioStreamPlayer2D" parent="notif"]
+stream = ExtResource("21_33dvy")
+
+[connection signal="button_down" from="right_pane/menu_000/Button" to="." method="_on_button_button_down"]
+[connection signal="text_changed" from="right_pane/menu_settings/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="right_pane/menu_settings/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="button_down" from="right_pane/menu_settings/VBoxContainer/mgrdir/SelectDirMGR" to="." method="_on_select_dir_mgr_button_down"]
+[connection signal="file_selected" from="right_pane/menu_settings/VBoxContainer/mgrdir/FileDialog" to="." method="_on_file_dialog_file_selected"]
+[connection signal="pressed" from="right_pane/menu_settings/save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="right_pane/menu_settings/reload" to="." method="_on_reload_pressed"]
+[connection signal="text_changed" from="right_pane/menu_directory_explorer/search" to="right_pane/menu_directory_explorer" method="_on_search_text_changed"]
+[connection signal="text_submitted" from="right_pane/menu_directory_explorer/search" to="right_pane/menu_directory_explorer" method="_on_line_edit_text_submitted"]
+[connection signal="pressed" from="right_pane/menu_directory_explorer/directory_back" to="." method="_on_directory_back_pressed"]
+[connection signal="timeout" from="right_pane/menu_directory_explorer/search_timer" to="right_pane/menu_directory_explorer" method="_on_search_timer_timeout"]
+[connection signal="pressed" from="right_pane/menu_ddr/TextureButton" to="right_pane/menu_ddr" method="_on_texture_button_pressed"]
+[connection signal="timeout" from="right_pane/menu_ddr/Timer" to="right_pane/menu_ddr" method="_on_timer_timeout"]
+[connection signal="button_down" from="file_info" to="." method="_on_file_info_button_down"]
+[connection signal="child_entered_tree" from="toolbar/file" to="." method="_on_file_child_entered_tree"]
+[connection signal="button_down" from="toolbar/view" to="." method="_on_view_button_down"]
+[connection signal="child_entered_tree" from="toolbar/view" to="." method="_on_file_child_entered_tree"]
+[connection signal="button_down" from="toolbar/help" to="." method="_on_help_button_down"]
+[connection signal="child_entered_tree" from="toolbar/help" to="." method="_on_file_child_entered_tree"]

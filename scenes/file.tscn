@@ -1,0 +1,323 @@
+[gd_scene load_steps=8 format=3 uid="uid://biitjvltosd8d"]
+
+[ext_resource type="Script" path="res://scenes/file_handler.gd" id="1_2ioyv"]
+[ext_resource type="FontFile" uid="uid://dne2fc1los10l" path="res://assets/conthrax-sb.otf" id="2_6qhgy"]
+[ext_resource type="Texture2D" uid="uid://bhkvair1q4i1a" path="res://assets/icons/animation.png" id="3_x8jgv"]
+[ext_resource type="Shader" path="res://scenes/invert.gdshader" id="4_ctudg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ssj6t"]
+shader = ExtResource("4_ctudg")
+
+[sub_resource type="Animation" id="Animation_qwit0"]
+resource_name = "fade"
+length = 0.25
+step = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.199),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:custom_minimum_size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.202),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 50), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.209, 0.212),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_324mv"]
+_data = {
+"fade": SubResource("Animation_qwit0")
+}
+
+[node name="File" type="Control"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ioyv")
+
+[node name="pane000" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 941.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="pane000"]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Size" type="Label" parent="pane000"]
+layout_mode = 0
+offset_left = 815.0
+offset_top = 3.0
+offset_right = 935.0
+offset_bottom = 36.0
+theme_override_colors/font_outline_color = Color(0.360784, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 26
+text = "12MB"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="pane000"]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 4.0
+offset_right = 684.0
+offset_bottom = 37.0
+theme_override_colors/font_outline_color = Color(0.360784, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 26
+text = "aaaaaaaaaaaaaaaaaaaaaaa"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="pane000"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_ssj6t")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("3_x8jgv")
+expand_mode = 1
+
+[node name="pane001" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 941.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="pane001"]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.560784)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="pane001"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 3.0
+offset_right = 946.0
+offset_bottom = 37.0
+
+[node name="5" type="ColorRect" parent="pane001/HBoxContainer"]
+custom_minimum_size = Vector2(4.845, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="remove" type="Button" parent="pane001/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 20
+text = "REMOVE"
+
+[node name="3" type="ColorRect" parent="pane001/HBoxContainer"]
+custom_minimum_size = Vector2(4.845, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="rename" type="Button" parent="pane001/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 20
+text = "RENAME"
+
+[node name="6" type="ColorRect" parent="pane001/HBoxContainer"]
+custom_minimum_size = Vector2(4.845, 0)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="pane_rename" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 941.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="pane_rename"]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.560784)
+
+[node name="TextureRect" type="TextureRect" parent="pane_rename"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_ssj6t")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 38.0
+texture = ExtResource("3_x8jgv")
+expand_mode = 1
+
+[node name="LineEdit" type="LineEdit" parent="pane_rename"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 1.0
+offset_right = 936.0
+offset_bottom = 42.0
+theme_override_colors/font_outline_color = Color(0.360784, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 26
+placeholder_text = "rename"
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 3.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 37.0
+offset_bottom = -31.0
+rotation = 1.5708
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = -6.10352e-05
+offset_top = -942.0
+offset_right = 33.9999
+offset_bottom = -939.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="mouse_det" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 808.0
+offset_bottom = 40.0
+mouse_filter = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_324mv")
+}
+
+[node name="RightClickContext" type="Control" parent="."]
+visible = false
+top_level = true
+z_index = 10
+anchors_preset = 0
+offset_right = 141.0
+offset_bottom = 142.0
+
+[node name="ColorRect" type="ColorRect" parent="RightClickContext"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.654902)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RightClickContext"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="export" type="Button" parent="RightClickContext/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 20
+text = "EXPORT"
+
+[node name="replace" type="Button" parent="RightClickContext/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 20
+text = "REPLACE"
+
+[node name="rename" type="Button" parent="RightClickContext/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 20
+text = "RENAME"
+
+[node name="remove" type="Button" parent="RightClickContext/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.658824, 0, 0, 0.294118)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_6qhgy")
+theme_override_font_sizes/font_size = 20
+text = "REMOVE"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="pane000" to="." method="_on_pane_000_mouse_entered"]
+[connection signal="mouse_exited" from="pane000" to="." method="_on_pane_000_mouse_exited"]
+[connection signal="pressed" from="pane001/HBoxContainer/remove" to="." method="_on_remove_pressed"]
+[connection signal="button_down" from="pane001/HBoxContainer/rename" to="." method="_on_rename_button_down"]
+[connection signal="text_submitted" from="pane_rename/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="mouse_entered" from="mouse_det" to="." method="_on_mouse_det_mouse_entered"]
+[connection signal="mouse_exited" from="mouse_det" to="." method="_on_mouse_det_mouse_exited"]
+[connection signal="button_down" from="RightClickContext/VBoxContainer/export" to="." method="_on_export_button_down"]
+[connection signal="pressed" from="RightClickContext/VBoxContainer/replace" to="." method="_on_replace_pressed"]
+[connection signal="pressed" from="RightClickContext/VBoxContainer/rename" to="." method="_on_rename_button_down"]
+[connection signal="pressed" from="RightClickContext/VBoxContainer/remove" to="." method="_on_remove_pressed"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://5fwo3fi3a5lt"]
+
+[ext_resource type="Script" path="res://scenes/structs/DatFileEntry.gd" id="1_xagxe"]
+
+[node name="DatFileEntry" type="Node"]
+script = ExtResource("1_xagxe")

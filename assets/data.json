@@ -1,0 +1,57 @@
+{
+	"bxm" : {
+	  "desc" : "An XML file encoded in binary\nHas several uses in MGRR but is most commonly used as information for .MOT (animation) files",
+	  },
+	"gad" : {
+	  "desc" : "A binary encoded file\nVery similar to BXM, but with different use cases",
+	  },
+	"mot" : {
+	  "desc" : "An animation data file\nThis file is only used for animation and contains no 3D model data",
+	  },
+	"bnk" : {
+	  "desc" : "WWise audio container data\nThis file is used to play back SFX and music in the game.\nAddition note: Must be compiled in WWISE 2012.2",
+	  },
+	"wmb" : {
+	  "desc" : "Model file\nContains bones, materials, and meshes. No animations",
+	  },
+	"bin" : {
+	  "desc" : "Multi-purpose binary data file\nMost usefully found in BattleParameters, where it contains health and other data for enemies",
+	  },
+	"wta" : {
+	  "desc" : "Texture metadata file\nContains texture metadata",
+	  },
+	"wtp" : {
+	  "desc" : "Texture file\nContains texture data in .DDS or .PNG format",
+	  },
+	"wtb" : {
+	  "desc" : "Complete texture file\nContains texture data (PNG or DDS) and texture metadata",
+	  },
+	"est" : {
+	  "desc" : "Effects file\nContains various effects",
+	  },
+	"mcd" : {
+	  "desc" : "Text data file\nContains various instances of text, this may be translations, fonts, or character defintions",
+	  },
+	"scr" : {
+	  "desc" : "Stage model data\nContains mesh and model data for stages",
+	  },
+	"ly2" : {
+	  "desc" : "Level prop data\nContains mesh and model data for props found in levels",
+	  },
+	"wem" : {
+	  "desc" : "Raw WWISE sound data\nThis can easily be converted to OGG and other audio formats",
+	  },
+	"hkx" : {
+	  "desc" : "Havok collision data\nCollision data for the Havok engine",
+	  },
+	"dds" : {
+	  "desc" : "Microsoft DirectX Texture Data\nThis is just DirectDraw Surface data, used in almost, if not every texture in the game",
+	  },
+	"eff" : {
+	  "desc" : "Effects container file\nSimilar to DAT, contains various effects",
+	  },
+	"gad" : {
+	  "desc" : "An XML file encoded in binary\nUsed for lighting and fog information",
+	  },	
+  }
+  

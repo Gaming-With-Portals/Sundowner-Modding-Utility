@@ -1,0 +1,82 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctg1rcxbyn2tp"]
+
+[ext_resource type="Script" path="res://scenes/recent_file.gd" id="1_8fsgx"]
+[ext_resource type="FontFile" uid="uid://dne2fc1los10l" path="res://assets/conthrax-sb.otf" id="1_kju7t"]
+[ext_resource type="Shader" path="res://scenes/invert.gdshader" id="2_r563v"]
+[ext_resource type="Texture2D" uid="uid://cxhuov3mx3ax1" path="res://assets/icons/dat.png" id="3_a0d7b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mt0t8"]
+shader = ExtResource("2_r563v")
+
+[node name="RecentFile" type="Control"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fsgx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0, 0, 0, 0.560784)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 4.0
+offset_right = 939.0
+offset_bottom = 37.0
+theme_override_colors/font_outline_color = Color(0.360784, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1_kju7t")
+theme_override_font_sizes/font_size = 26
+text = "EM0310.DAT"
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 2
+material = SubResource("ShaderMaterial_mt0t8")
+layout_mode = 0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 38.0
+offset_bottom = 37.0
+texture = ExtResource("3_a0d7b")
+expand_mode = 1
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 945.0
+offset_bottom = 3.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect3"]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 945.0
+offset_bottom = 40.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect3/ColorRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -34.0
+offset_right = 37.0
+offset_bottom = -31.0
+rotation = 1.5708
+color = Color(0.603922, 0, 0, 0.439216)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect3/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = -6.10352e-05
+offset_top = -942.0
+offset_right = 33.9999
+offset_bottom = -939.0
+color = Color(0.603922, 0, 0, 0.439216)
+
+[connection signal="mouse_entered" from="ColorRect" to="." method="_on_color_rect_mouse_entered"]
+[connection signal="mouse_exited" from="ColorRect" to="." method="_on_color_rect_mouse_exited"]

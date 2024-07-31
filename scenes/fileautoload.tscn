@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmkuyiobfpbj6"]
+
+[ext_resource type="Script" path="res://scenes/fileautoload.gd" id="1_sxinb"]
+
+[node name="fileautoload" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sxinb")
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(392, 159)
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="FileDialogExp" type="FileDialog" parent="."]
+size = Vector2i(454, 159)
+ok_button_text = "Save"
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="FileDialogDir" type="FileDialog" parent="."]
+title = "Open a Directory"
+size = Vector2i(454, 159)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+show_hidden_files = true
+use_native_dialog = true

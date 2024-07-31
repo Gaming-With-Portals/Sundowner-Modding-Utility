@@ -1,0 +1,100 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6v2joqded7k2"]
+
+[ext_resource type="FontFile" uid="uid://dne2fc1los10l" path="res://assets/conthrax-sb.otf" id="1_e34rv"]
+[ext_resource type="Script" path="res://auto-updater.gd" id="1_o661x"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt6ef"]
+bg_color = Color(1, 0, 0, 0.301961)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_74cky"]
+bg_color = Color(0.794399, 3.22476e-06, 9.62615e-07, 1)
+
+[node name="Auto-updater" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o661x")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.686275)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 39.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_e34rv")
+theme_override_font_sizes/font_size = 32
+text = "SMU UPDATER
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_e34rv")
+theme_override_font_sizes/font_size = 32
+text = "Updating Sundowner Modding Utility...
+
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="status" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 339.0
+offset_right = 1151.0
+offset_bottom = 370.0
+theme_override_fonts/font = ExtResource("1_e34rv")
+theme_override_font_sizes/font_size = 20
+text = "Connecting to server...
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="app" type="Label" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 34.0
+offset_right = 1151.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("1_e34rv")
+theme_override_font_sizes/font_size = 20
+text = "The application may freeze during this process"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -433.0
+offset_top = -13.0
+offset_right = 433.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_e34rv")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_nt6ef")
+theme_override_styles/fill = SubResource("StyleBoxFlat_74cky")

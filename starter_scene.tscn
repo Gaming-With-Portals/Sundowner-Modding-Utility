@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwdutl337qyau"]
+
+[ext_resource type="Script" path="res://starter_scene.gd" id="1_5bs16"]
+[ext_resource type="PackedScene" uid="uid://bb73150e82j6k" path="res://main.tscn" id="1_sbbvd"]
+
+[node name="StarterScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -55.0
+offset_right = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5bs16")
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -578.0
+offset_top = -253.0
+offset_right = 573.0
+offset_bottom = 461.0
+
+[node name="1" parent="Control" instance=ExtResource("1_sbbvd")]
+layout_mode = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, 55)
+
+[node name="TabBar" type="TabBar" parent="."]
+z_index = 10
+layout_mode = 0
+offset_left = -578.0
+offset_top = -288.0
+offset_right = 573.0
+offset_bottom = -257.0
+tab_count = 2
+tab_0/title = "+"
+tab_1/title = "New Tab"
+
+[connection signal="tab_clicked" from="TabBar" to="." method="_on_tab_bar_tab_clicked"]

@@ -1,0 +1,180 @@
+[gd_scene load_steps=14 format=3 uid="uid://dui6ntv7w0lph"]
+
+[ext_resource type="Script" path="res://about_window.gd" id="1_f47ra"]
+[ext_resource type="Script" path="res://bg.gd" id="2_kfamw"]
+[ext_resource type="Texture2D" uid="uid://vjc2qgk4dohc" path="res://assets/des_logo_new.webp.png" id="3_70ug7"]
+[ext_resource type="Texture2D" uid="uid://lf0b7abc7vpn" path="res://assets/newerbg.png" id="4_3uidx"]
+[ext_resource type="Texture2D" uid="uid://c3rb4dqtotrvj" path="res://assets/ember.png" id="5_cud4e"]
+[ext_resource type="FontFile" uid="uid://cel4nq4fx2mhx" path="res://techno_hideo.ttf" id="6_dqsfb"]
+[ext_resource type="Texture2D" uid="uid://c11uedxjua20i" path="res://assets/logo/gwp_00.png" id="8_q47ob"]
+[ext_resource type="Texture2D" uid="uid://158yspskhs7d" path="res://assets/logo/gwp_01.png" id="9_cfg5a"]
+[ext_resource type="Texture2D" uid="uid://driheykcos62h" path="res://assets/logo/gwp_02.png" id="10_qg2yf"]
+[ext_resource type="Texture2D" uid="uid://18bw4ai5k5by" path="res://assets/logo/gwp_03.png" id="11_asmts"]
+[ext_resource type="Texture2D" uid="uid://t8hspjqeu1np" path="res://assets/logo/gwp_05.png" id="12_lp7tp"]
+[ext_resource type="Texture2D" uid="uid://qx821oai3q4y" path="res://assets/logo/gwp_04.png" id="13_8b66e"]
+
+[sub_resource type="GDScript" id="GDScript_ykisw"]
+resource_name = "animation"
+script/source = "extends Control
+
+
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	$\"00\".position.x = sin(Time.get_ticks_msec() / 500.0) * 2.0
+	
+	$\"01\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.2
+	$\"02\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.2
+	$\"03\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.2
+	
+	$\"04\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1.5
+	$\"05\".position.x = sin(Time.get_ticks_msec() / 500.0) * 1
+"
+
+[node name="AboutWindow" type="Window"]
+initial_position = 1
+size = Vector2i(745, 600)
+unresizable = true
+script = ExtResource("1_f47ra")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 656.0
+color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+script = ExtResource("2_kfamw")
+
+[node name="TextureRect2" type="TextureRect" parent="Control/bg"]
+self_modulate = Color(1, 1, 1, 0.14902)
+layout_mode = 0
+offset_left = 381.0
+offset_top = 236.0
+offset_right = 741.0
+offset_bottom = 536.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("3_70ug7")
+
+[node name="bg_001" type="TextureRect" parent="Control/bg"]
+self_modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 0
+offset_left = 1178.0
+offset_top = 651.0
+offset_right = 3257.0
+offset_bottom = 1855.0
+rotation = 3.14159
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("4_3uidx")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Control/bg"]
+position = Vector2(-417, 325)
+scale = Vector2(0.799542, 0.349498)
+amount = 80
+lifetime = 4.0
+texture = ExtResource("5_cud4e")
+spread = 35.65
+gravity = Vector2(0, 0)
+initial_velocity_min = 561.45
+initial_velocity_max = 561.45
+angle_min = 193.8
+angle_max = 193.8
+scale_amount_min = 0.3
+scale_amount_max = 0.3
+color = Color(1, 0, 0, 1)
+
+[node name="Logo" type="Control" parent="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 150.0
+offset_top = 100.0
+offset_right = 190.0
+offset_bottom = 140.0
+scale = Vector2(1.5, 1.5)
+script = SubResource("GDScript_ykisw")
+
+[node name="00" type="TextureRect" parent="Control/Logo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+texture = ExtResource("8_q47ob")
+
+[node name="01" type="TextureRect" parent="Control/Logo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+texture = ExtResource("9_cfg5a")
+
+[node name="02" type="TextureRect" parent="Control/Logo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+texture = ExtResource("10_qg2yf")
+
+[node name="03" type="TextureRect" parent="Control/Logo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+texture = ExtResource("11_asmts")
+
+[node name="04" type="TextureRect" parent="Control/Logo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+texture = ExtResource("12_lp7tp")
+
+[node name="05" type="TextureRect" parent="Control/Logo"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 1.0
+offset_top = 19.0
+offset_right = 481.0
+offset_bottom = 379.0
+texture = ExtResource("13_8b66e")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_right = 745.0
+offset_bottom = 147.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_dqsfb")
+theme_override_font_sizes/font_size = 73
+text = "SUNDOWNER
+MODDING
+UTILITY"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 160.0
+offset_right = 750.0
+offset_bottom = 221.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("6_dqsfb")
+theme_override_font_sizes/font_size = 50
+text = "SUCCESSFULLY UPDATED!
+"
+horizontal_alignment = 1
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
