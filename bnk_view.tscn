@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://dii5f5fgkup74"]
+
+[ext_resource type="Script" path="res://bg.gd" id="1_7p76k"]
+[ext_resource type="Texture2D" uid="uid://lf0b7abc7vpn" path="res://assets/newerbg.png" id="2_sbtmd"]
+
+[node name="Window" type="Window"]
+title = "BNK Viewer"
+position = Vector2i(0, 36)
+size = Vector2i(410, 575)
+
+[node name="bg" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+script = ExtResource("1_7p76k")
+
+[node name="bg_001" type="TextureRect" parent="bg"]
+self_modulate = Color(1, 1, 1, 0.498039)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 3.14159
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_sbtmd")
+expand_mode = 1

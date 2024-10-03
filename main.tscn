@@ -1143,7 +1143,7 @@ theme_override_colors/font_shadow_color = Color(0.658824, 0, 0, 0.294118)
 theme_override_constants/shadow_outline_size = 12
 theme_override_fonts/font = ExtResource("10_1e8ur")
 theme_override_font_sizes/font_size = 20
-text = "V2.0"
+text = "V2.1"
 horizontal_alignment = 2
 
 [node name="file" type="MenuButton" parent="toolbar"]
@@ -1279,6 +1279,19 @@ vertical_alignment = 1
 [node name="as" type="AudioStreamPlayer2D" parent="notif"]
 stream = ExtResource("21_33dvy")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="get_file" type="HTTPRequest" parent="."]
+
+[node name="update_diag" type="ConfirmationDialog" parent="."]
+title = "Sundowner Modding Utility"
+initial_position = 1
+size = Vector2i(433, 120)
+ok_button_text = "Yes"
+dialog_text = "Do you want to update Sundowner Modding Utility
+to the latest version?"
+cancel_button_text = "No"
+
 [connection signal="button_down" from="right_pane/menu_000/Button" to="." method="_on_button_button_down"]
 [connection signal="text_changed" from="right_pane/menu_settings/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
 [connection signal="text_submitted" from="right_pane/menu_settings/VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
@@ -1298,3 +1311,6 @@ stream = ExtResource("21_33dvy")
 [connection signal="child_entered_tree" from="toolbar/view" to="." method="_on_file_child_entered_tree"]
 [connection signal="button_down" from="toolbar/help" to="." method="_on_help_button_down"]
 [connection signal="child_entered_tree" from="toolbar/help" to="." method="_on_file_child_entered_tree"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="request_completed" from="get_file" to="." method="_on_get_file_request_completed"]
+[connection signal="confirmed" from="update_diag" to="." method="_on_update_diag_confirmed"]

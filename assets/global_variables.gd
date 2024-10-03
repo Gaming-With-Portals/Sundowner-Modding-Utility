@@ -21,12 +21,14 @@ var update_file_path = ''
 var F_SERVO_CONFIGURED = false
 var F_SERVO_PATH = "F:\\Downloads\\F-SERVO_v1.4.3\\F-SERVO.exe"
 var F_SERVO_EXTENSIONS = ["bnk", "est"]
+var update_url = ""
+var replacing_file = false
 
 @export var last_directory : String
 var file_system
 var current_dir
 
-var APP_VERSION = 2
+var APP_VERSION = 3
 
 func _enter_tree() -> void:
 	get_tree().node_added.connect(on_node_added)

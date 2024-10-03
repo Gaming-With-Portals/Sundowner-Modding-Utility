@@ -98,3 +98,7 @@ theme_override_fonts/font = ExtResource("1_e34rv")
 theme_override_font_sizes/font_size = 20
 theme_override_styles/background = SubResource("StyleBoxFlat_nt6ef")
 theme_override_styles/fill = SubResource("StyleBoxFlat_74cky")
+
+[node name="Downloader" type="HTTPRequest" parent="."]
+
+[connection signal="request_completed" from="Downloader" to="." method="_on_downloader_request_completed"]

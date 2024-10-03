@@ -87,10 +87,12 @@ func _on_export_pressed():
 
 
 func _on_replace_pressed():
-	var fd = Fileautoload.get_node("FileDialog")
-	fd.clear_filters()
-	fd.file_selected.connect(_replace_file)
-	fd.visible = true
+	if not GlobalVariables.replacing_file:
+		GlobalVariables.replacing_file = true
+		var fd = Fileautoload.get_node("FileDialog")
+		fd.clear_filters()
+		fd.file_selected.connect(_replace_file)
+		fd.visible = true
 	
 
 func _on_remove_pressed():
@@ -108,6 +110,8 @@ func _on_rename_button_down():
 
 func _replace_file(path):
 	print(path)
+	var fd = Fileautoload.get_node("FileDialog")
+	fd.file_selected.disconnect(_replace_file)
 	var file_data = FileAccess.open(path, FileAccess.READ)
 	var file_byte = file_data.get_buffer(file_data.get_length())
 	var idx = GlobalVariables.gv_files.find(File)
@@ -119,8 +123,10 @@ func _replace_file(path):
 		$pane000/Size.text = str(int(file_size * 100) / 100.0) + "KB"
 	else:
 		$pane000/Size.text = str(int(file_size * 100) / 100.0) + "MB"
+	GlobalVariables.replacing_file = false
 
 func _export_file(path):
+	
 	var idx = GlobalVariables.gv_files.find(File)
 	var path_f = path
 	print("path: " + path_f + " extension: " + path_f.get_extension())

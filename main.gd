@@ -25,7 +25,8 @@ func _ready():
 	data_path = OS.get_executable_path().get_base_dir() + "/pmc/data/"
 	print("Clearing cache")
 	_clear_temp_directory()
-
+	print("Checking for updates...")
+	# $HTTPRequest.request("https://api.github.com/repos/Gaming-With-Portals/Sundowner-Modding-Utility/releases")
 
 	
 	
@@ -505,3 +506,36 @@ func _change_dir(new_dir):
 
 func _on_view_button_down():
 	pass # Replace with function body.
+
+
+func _on_http_request_request_completed(result, response_code, headers, body):
+	var data = body.get_string_from_utf8()
+	var json = JSON.new()
+	var error = json.parse(data)
+	if error == OK:
+		if len(json.data[0]["tag_name"].split("_")) > 1:
+			var tag_id = json.data[0]["tag_name"].split("_")[1]
+			var download_path = json.data[0]["assets"][0]["url"]
+			tag_id = int(tag_id)
+			if (tag_id > GlobalVariables.APP_VERSION):
+				print("Updating from " + download_path)
+				$get_file.request(download_path)
+		
+		else:
+			print("Unable to determine latest version")
+
+
+func _on_get_file_request_completed(result, response_code, headers, body):
+	print("Got file info")
+	var data = body.get_string_from_utf8()
+	var json = JSON.new()
+	var error = json.parse(data)
+	
+	GlobalVariables.update_url = json.data['browser_download_url']
+	print("Prompt update")
+	$update_diag.show();
+
+
+func _on_update_diag_confirmed():
+	pass
+	#get_tree().change_scene_to_file("res://auto-updater.tscn")
