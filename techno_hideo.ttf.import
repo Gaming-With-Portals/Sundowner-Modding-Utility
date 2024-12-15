@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/techno_hideo.ttf-8305e87ea5c62ce2e5149e5f4169
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

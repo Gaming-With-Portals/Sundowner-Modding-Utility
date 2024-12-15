@@ -11,7 +11,7 @@ var data_path = null
 var IsDatLoaded = false
 var uuid = null
 var file_objects = null # Base file objects
-var VALID_EXTENSIONS = ["dat", "dtt", "env", "eff"]
+var VALID_EXTENSIONS = ["dat", "dtt", "evn", "eff", "eft"]
 var RAW_CURRENT_FILE_NAME = ""
 var REQUIRED_FILES_FOR_COMPILE = []
 var ASSOCIATED_FILE_REF = null
@@ -26,7 +26,7 @@ func _ready():
 	print("Clearing cache")
 	_clear_temp_directory()
 	print("Checking for updates...")
-	# $HTTPRequest.request("https://api.github.com/repos/Gaming-With-Portals/Sundowner-Modding-Utility/releases")
+	#$HTTPRequest.request("https://api.github.com/repos/Gaming-With-Portals/Sundowner-Modding-Utility/releases")
 
 	
 	
@@ -252,6 +252,8 @@ func _getDroppedFiles(files):
 					
 					FileThing._build_file(file_data, $FileList, self)
 					FileThing.is_saved = false
+
+					
 					GlobalVariables.gv_files.append(FileThing.File)
 					$right_pane/menu_directory_explorer/FileList.get_node(GlobalVariables.current_dir).add_child(FileThing)
 
@@ -394,9 +396,8 @@ func _on_reload_pressed():
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _file_menu_signal(id):
-	
 	match id:
-		0:
+		5:
 			if IsDatLoaded:
 				_on_file_pressed()
 			else:
@@ -439,7 +440,7 @@ func _load_file_from_menu(file):
 
 
 func _save_as_file(dir):
-	DatHandler._save_recursive($right_pane/menu_directory_explorer/FileList, dir)
+	DatHandler.Save(GlobalVariables.gv_files, dir)
 
 func _help_menu_signal(id):
 	match id:
@@ -514,12 +515,11 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 	var error = json.parse(data)
 	if error == OK:
 		if len(json.data[0]["tag_name"].split("_")) > 1:
-			var tag_id = json.data[0]["tag_name"].split("_")[1]
-			var download_path = json.data[0]["assets"][0]["url"]
+			var tag_id = json.data[0]["tag_name"].split(".")[1]
 			tag_id = int(tag_id)
 			if (tag_id > GlobalVariables.APP_VERSION):
-				print("Updating from " + download_path)
-				$get_file.request(download_path)
+				$global_anim_player.play("notification")
+				$notif/notiftext.text = "SAVED"
 		
 		else:
 			print("Unable to determine latest version")
@@ -533,7 +533,8 @@ func _on_get_file_request_completed(result, response_code, headers, body):
 	
 	GlobalVariables.update_url = json.data['browser_download_url']
 	print("Prompt update")
-	$update_diag.show();
+
+
 
 
 func _on_update_diag_confirmed():

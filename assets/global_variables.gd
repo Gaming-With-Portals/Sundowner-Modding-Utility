@@ -28,7 +28,7 @@ var replacing_file = false
 var file_system
 var current_dir
 
-var APP_VERSION = 3
+var APP_VERSION = 2
 
 func _enter_tree() -> void:
 	get_tree().node_added.connect(on_node_added)

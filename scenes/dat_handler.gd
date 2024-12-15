@@ -1,5 +1,5 @@
 extends Node
-var VALID_EXTENSIONS = ["dat", "dtt", "env", "eff", "eft"]
+var VALID_EXTENSIONS = ["dat", "dtt", "evn", "eff", "eft"]
 var packed_bytes_0 : PackedByteArray = [0x00]
 var global_folders = []
 var compile_heirarchy = []
