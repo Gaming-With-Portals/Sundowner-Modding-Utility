@@ -31,6 +31,9 @@ func _ready():
 	
 	
 	print(tools_path)
+	if not DirAccess.dir_exists_absolute(tools_path):
+		DirAccess.make_dir_absolute(tools_path)
+	
 	# Connect the signals
 	get_tree().get_root().files_dropped.connect(_getDroppedFiles)
 	
